@@ -4,15 +4,15 @@ dt = 0.1
 
 def cubic_spiral(theta_i, theta_f,n=10):
     '''
-    Generates a cubic turn given initial and final theta. 
-    'n' is the measure of smmothness.
+    Returns thetas corresponding to a cubic turn given initial and final theta. 
+    'n' is the measure of smoothness.
     '''
     x = np.linspace(0, 1, num=n)
     return (theta_f-theta_i)*(-2*x**3 + 3*x**2) + theta_i
     
 def straight(dist, curr_pose, radius, num_st_pts = 10):
     '''
-    Generates a poses for a straight path given current pose and distance. 
+    Returns poses for a straight path given current pose and distance. 
     radius is a dummy parameter. 'num_st_pts' is the number of sampling points.
     '''
     x0, y0, t0 = curr_pose
@@ -23,7 +23,7 @@ def straight(dist, curr_pose, radius, num_st_pts = 10):
 
 def turn(change, curr_pose, radius = 0.5, num_turn_pts = 50):
     '''
-    Generates a poses for a turn given current pose and angle. 
+    Returns poses for a turn given current pose and angle. 
     radius is the radius of the turn: (radius<0.5) set to maximum 0.5 by default. 
     'num_turn_pts' is the number of sampling points.
     '''
@@ -35,7 +35,7 @@ def turn(change, curr_pose, radius = 0.5, num_turn_pts = 50):
 
 def generate_trajectory(route, init_pose = (0, 0,np.pi/2),radius = 0.5):
     '''
-    Generates a nx3 ndarray of poses as columns for a given set of commands as [manouevre,value] and the initial pose. 
+    Returns a 3xn ndarray of poses as columns for a given set of commands as [manouevre,value] and the initial pose. 
     radius is the radius of the turn: (radius<0.5) set to maximum 0.5 by default. 
     '''
     curr_pose = init_pose
@@ -48,11 +48,11 @@ def generate_trajectory(route, init_pose = (0, 0,np.pi/2),radius = 0.5):
         y = np.concatenate([y, py])
         t = np.concatenate([t, pt])
         
-    return np.vstack([x, y, t])
+    return (np.vstack([x, y, t])).T
 
 def get_route(path,radius = 0.5):
     '''
-    Generates an array of commands as [manouevre,value] for a given set of path coordinates.
+    Returns an array of commands as [manouevre,value] for a given set of path coordinates.
     radius is the radius of the turn: (radius<0.5) set to maximum 0.5 by default. 
     '''
     path_list = np.array(path) 
