@@ -1,5 +1,5 @@
-# path_planning
-This repo is for all the path planning code.
+# Motion Planning and Tracking for Wheeled Robots
+This repo is for all the path planning and tracking code.
 
 ```trajectory.py``` contains the following functions:
 Function | What it does
