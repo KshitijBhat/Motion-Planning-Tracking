@@ -18,7 +18,7 @@ def initgraph(grid,draw=False):
     deleted_nodes = 0 # counter to keep track of deleted nodes
     #nested loop to remove unconnected nodes
     for i in range(grid.shape[0]):
-        for j in range(grid.shape[0]):
+        for j in range(grid.shape[1]):
             if grid[i,j] == 1:
                 G.remove_node((i,j))
                 deleted_nodes += 1
