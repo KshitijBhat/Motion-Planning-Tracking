@@ -9,7 +9,7 @@ def euclidean(node1, node2):
     x2,y2 = node2
     return np.sqrt((x2-x1)**2 + (y2-y1)**2)
 
-def initgraph(grid):
+def initgraph(grid,draw=False):
     '''
     Initializes the possible nodes in a binary occupancy grid (2d numpy array).
     '''
@@ -22,10 +22,11 @@ def initgraph(grid):
             if grid[i,j] == 1:
                 G.remove_node((i,j))
                 deleted_nodes += 1
-    # print(f"removed {deleted_nodes} nodes")
-    # print(f"number of occupied cells in grid {np.sum(grid)}")
-    # pos = {(x,y):(y,-x) for x,y in G.nodes()}
-    # nx.draw(G, pos = pos, node_color = 'red', node_size=2)
+    if draw:
+        print(f"removed {deleted_nodes} nodes")
+        print(f"number of occupied cells in grid {np.sum(grid)}")
+        pos = {(x,y):(y,-x) for x,y in G.nodes()}
+        nx.draw(G, pos = pos, node_color = 'red', node_size=2)
     return G
 
 def astar_path(grid,start, goal):
